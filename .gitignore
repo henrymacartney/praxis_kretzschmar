@@ -1,0 +1,24 @@
+cat > .gitignore <<'EOF'
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+package-lock.json
+
+# Build output (we'll regenerate it)
+shared/themes/praxis-base/build/
+
+# IDE
+.idea/
+*.iml
+
+# resources from Strato & old apps
+resources/
+
+# Symlinks to Local sites (these are local-only)
+sites/
+
+# Local logs
+*.log
+EOF
