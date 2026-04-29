@@ -1,11 +1,13 @@
 /*
  * Praxis Base — Tailwind 4 source.
  *
- * Tailwind 4 uses CSS-first configuration via @theme.
- * Tokens defined here become utility classes automatically:
- *   --color-stone-50  → bg-stone-50, text-stone-50, border-stone-50
- *   --font-sans       → font-sans
- *   --spacing-18      → p-18, m-18, gap-18
+ * Palette: Deep navy blue + warm cream. Established therapeutic feel.
+ * Typography: Cormorant Garamond display serif + Inter sans for body.
+ *
+ * Tailwind 4 auto-generates utilities from CSS custom properties:
+ *   --color-blue-800    → bg-blue-800, text-blue-800, border-blue-800
+ *   --font-display      → font-display
+ *   --font-sans         → font-sans (default body font)
  */
 
 @import "tailwindcss";
@@ -16,27 +18,49 @@
     --font-serif:   "Cormorant Garamond", ui-serif, Georgia, serif;
     --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
     
-    /* ─── Brand colour palette (placeholder — we'll refine) ─────── */
-    /* Warm, calm sand/sage palette. Both sites share this base; */
-    /* per-site accent colours come from the child theme.         */
-    --color-sand-50:  #FAF7F2;
-    --color-sand-100: #F2EBDF;
-    --color-sand-200: #E4D7C2;
-    --color-sand-400: #B59A75;
-    --color-sand-600: #6B5538;
-    --color-sand-800: #3A2D1E;
+    /* ─── Cream — backgrounds, soft surfaces ─────────────────────── */
+    --color-cream-50:  #FDFBF5;
+    --color-cream-100: #F5EFE0;
+    --color-cream-200: #E8DDC0;
+    --color-cream-300: #D9C99A;
+    --color-cream-600: #8C7A4E;
+    --color-cream-800: #4A3E22;
     
-    --color-sage-50:  #F1F4F0;
-    --color-sage-100: #DCE5D8;
-    --color-sage-200: #B8C8B0;
-    --color-sage-400: #7C9670;
-    --color-sage-600: #4A6442;
-    --color-sage-800: #2A3B25;
+    /* ─── Deep navy blue — primary brand colour ──────────────────── */
+    --color-navy-50:  #EEF3F8;
+    --color-navy-100: #D6E1EC;
+    --color-navy-200: #A9BFD3;
+    --color-navy-400: #4A6E8C;
+    --color-navy-600: #2D4F73;
+    --color-navy-800: #1B3A5C;
+    --color-navy-900: #0F2842;
     
-    /* Default accent — will be overridden per site in the child theme */
-    --color-accent-50:  var(--color-sage-50);
-    --color-accent-200: var(--color-sage-200);
-    --color-accent-400: var(--color-sage-400);
-    --color-accent-600: var(--color-sage-600);
-    --color-accent-800: var(--color-sage-800);
+    /* ─── Warm neutral — body text, subtle borders ───────────────── */
+    --color-stone-50:  #FAF9F6;
+    --color-stone-200: #E8E4DA;
+    --color-stone-400: #A8A299;
+    --color-stone-600: #5C5851;
+    --color-stone-800: #2E2B26;
+    
+    /* ─── Semantic accents (override per child theme later) ───────  */
+    --color-accent-50:  var(--color-navy-50);
+    --color-accent-200: var(--color-navy-200);
+    --color-accent-600: var(--color-navy-600);
+    --color-accent-800: var(--color-navy-800);
+}
+
+/* ─── Base typography defaults ───────────────────────────────────── */
+@layer base {
+    html {
+        font-family: var(--font-sans);
+        color: var(--color-stone-800);
+        background: var(--color-cream-50);
+    }
+    
+    h1, h2, h3, h4 {
+        font-family: var(--font-display);
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: var(--color-navy-800);
+    }
 }
