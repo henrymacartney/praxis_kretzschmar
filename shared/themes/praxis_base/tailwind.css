@@ -1,0 +1,42 @@
+/*
+ * Praxis Base — Tailwind 4 source.
+ *
+ * Tailwind 4 uses CSS-first configuration via @theme.
+ * Tokens defined here become utility classes automatically:
+ *   --color-stone-50  → bg-stone-50, text-stone-50, border-stone-50
+ *   --font-sans       → font-sans
+ *   --spacing-18      → p-18, m-18, gap-18
+ */
+
+@import "tailwindcss";
+
+@theme {
+    /* ─── Typography ─────────────────────────────────────────────── */
+    --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-serif:   "Cormorant Garamond", ui-serif, Georgia, serif;
+    --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+    
+    /* ─── Brand colour palette (placeholder — we'll refine) ─────── */
+    /* Warm, calm sand/sage palette. Both sites share this base; */
+    /* per-site accent colours come from the child theme.         */
+    --color-sand-50:  #FAF7F2;
+    --color-sand-100: #F2EBDF;
+    --color-sand-200: #E4D7C2;
+    --color-sand-400: #B59A75;
+    --color-sand-600: #6B5538;
+    --color-sand-800: #3A2D1E;
+    
+    --color-sage-50:  #F1F4F0;
+    --color-sage-100: #DCE5D8;
+    --color-sage-200: #B8C8B0;
+    --color-sage-400: #7C9670;
+    --color-sage-600: #4A6442;
+    --color-sage-800: #2A3B25;
+    
+    /* Default accent — will be overridden per site in the child theme */
+    --color-accent-50:  var(--color-sage-50);
+    --color-accent-200: var(--color-sage-200);
+    --color-accent-400: var(--color-sage-400);
+    --color-accent-600: var(--color-sage-600);
+    --color-accent-800: var(--color-sage-800);
+}
