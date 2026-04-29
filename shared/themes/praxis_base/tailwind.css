@@ -12,6 +12,9 @@
 
 @import "tailwindcss";
 
+@source "../../../**/*.php";
+@source "./**/*.php";
+
 @theme {
     /* ─── Typography ─────────────────────────────────────────────── */
     --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;

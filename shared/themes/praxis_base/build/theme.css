@@ -6,13 +6,7 @@
     --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-stone-50: #FAF9F6;
-    --color-stone-200: #E8E4DA;
-    --color-stone-600: #5C5851;
-    --color-stone-700: oklch(37.4% 0.01 67.558);
     --color-stone-800: #2E2B26;
-    --color-stone-900: oklch(21.6% 0.006 56.043);
-    --color-white: #fff;
     --spacing: 0.25rem;
     --container-2xl: 42rem;
     --container-3xl: 48rem;
@@ -46,8 +40,10 @@
     --color-cream-200: #E8DDC0;
     --color-navy-50: #EEF3F8;
     --color-navy-200: #A9BFD3;
+    --color-navy-400: #4A6E8C;
     --color-navy-600: #2D4F73;
     --color-navy-800: #1B3A5C;
+    --color-navy-900: #0F2842;
   }
 }
 @layer base {
@@ -238,6 +234,9 @@
   .flex {
     display: flex;
   }
+  .hidden {
+    display: none;
+  }
   .inline-block {
     display: inline-block;
   }
@@ -271,13 +270,12 @@
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
+  .gap-8 {
+    gap: calc(var(--spacing) * 8);
+  }
   .border-y {
     border-block-style: var(--tw-border-style);
     border-block-width: 1px;
-  }
-  .border-t {
-    border-top-style: var(--tw-border-style);
-    border-top-width: 1px;
   }
   .border-b {
     border-bottom-style: var(--tw-border-style);
@@ -286,8 +284,8 @@
   .border-cream-200 {
     border-color: var(--color-cream-200);
   }
-  .border-stone-200 {
-    border-color: var(--color-stone-200);
+  .border-transparent {
+    border-color: transparent;
   }
   .bg-cream-50 {
     background-color: var(--color-cream-50);
@@ -297,12 +295,6 @@
   }
   .bg-navy-800 {
     background-color: var(--color-navy-800);
-  }
-  .bg-stone-50 {
-    background-color: var(--color-stone-50);
-  }
-  .bg-white {
-    background-color: var(--color-white);
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
@@ -325,9 +317,6 @@
   .py-20 {
     padding-block: calc(var(--spacing) * 20);
   }
-  .py-24 {
-    padding-block: calc(var(--spacing) * 24);
-  }
   .py-28 {
     padding-block: calc(var(--spacing) * 28);
   }
@@ -346,10 +335,6 @@
   .text-3xl {
     font-size: var(--text-3xl);
     line-height: var(--tw-leading, var(--text-3xl--line-height));
-  }
-  .text-4xl {
-    font-size: var(--text-4xl);
-    line-height: var(--tw-leading, var(--text-4xl--line-height));
   }
   .text-5xl {
     font-size: var(--text-5xl);
@@ -393,23 +378,17 @@
   .text-cream-100 {
     color: var(--color-cream-100);
   }
+  .text-cream-200 {
+    color: var(--color-cream-200);
+  }
   .text-navy-600 {
     color: var(--color-navy-600);
   }
   .text-navy-800 {
     color: var(--color-navy-800);
   }
-  .text-stone-600 {
-    color: var(--color-stone-600);
-  }
-  .text-stone-700 {
-    color: var(--color-stone-700);
-  }
   .text-stone-800 {
     color: var(--color-stone-800);
-  }
-  .text-stone-900 {
-    color: var(--color-stone-900);
   }
   .uppercase {
     text-transform: uppercase;
@@ -430,6 +409,47 @@
       }
     }
   }
+  .hover\:border-navy-400 {
+    &:hover {
+      @media (hover: hover) {
+        border-color: var(--color-navy-400);
+      }
+    }
+  }
+  .hover\:text-cream-50 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-cream-50);
+      }
+    }
+  }
+  .hover\:text-navy-900 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-navy-900);
+      }
+    }
+  }
+  .md\:block {
+    @media (width >= 48rem) {
+      display: block;
+    }
+  }
+  .md\:flex-row {
+    @media (width >= 48rem) {
+      flex-direction: row;
+    }
+  }
+  .md\:items-center {
+    @media (width >= 48rem) {
+      align-items: center;
+    }
+  }
+  .md\:justify-between {
+    @media (width >= 48rem) {
+      justify-content: space-between;
+    }
+  }
   .md\:py-36 {
     @media (width >= 48rem) {
       padding-block: calc(var(--spacing) * 36);
@@ -439,12 +459,6 @@
     @media (width >= 48rem) {
       font-size: var(--text-4xl);
       line-height: var(--tw-leading, var(--text-4xl--line-height));
-    }
-  }
-  .md\:text-5xl {
-    @media (width >= 48rem) {
-      font-size: var(--text-5xl);
-      line-height: var(--tw-leading, var(--text-5xl--line-height));
     }
   }
   .md\:text-6xl {

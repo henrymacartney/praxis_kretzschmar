@@ -25,13 +25,15 @@
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="font-display text-xl font-medium tracking-tight text-navy-800">
 				<?php bloginfo( 'name' ); ?>
 			</a>
-			<nav aria-label="<?php esc_attr_e( 'Hauptmenü', 'praxis-base' ); ?>" class="font-sans text-sm text-navy-600">
+			<nav aria-label="<?php esc_attr_e( 'Hauptmenü', 'praxis-base' ); ?>" class="hidden md:block">
 				<?php
 				wp_nav_menu( array(
-					'theme_location' => 'primary',
-					'container'      => false,
-					'menu_class'     => 'flex gap-6',
-					'fallback_cb'    => '__return_empty_string',
+					'theme_location'  => 'primary',
+					'container'       => false,
+					'menu_class'      => 'flex items-center gap-8 font-sans text-sm',
+					'fallback_cb'     => '__return_empty_string',
+					'link_before'     => '<span class="text-navy-600 hover:text-navy-900 transition-colors border-b border-transparent hover:border-navy-400 pb-1">',
+					'link_after'      => '</span>',
 				) );
 				?>
 			</nav>
