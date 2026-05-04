@@ -7,7 +7,7 @@ node_modules/
 package-lock.json
 
 # Build output (we'll regenerate it)
-shared/themes/praxis-base/build/
+shared/themes/praxis_base/build/
 
 # IDE
 .idea/
