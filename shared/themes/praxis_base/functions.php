@@ -58,4 +58,23 @@ add_action( 'init', function () {
     remove_action( 'wp_head', 'wlwmanifest_link' );      // Windows Live Writer.
     remove_action( 'wp_head', 'rsd_link' );              // Really Simple Discovery.
     remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-} );
+});
+
+/**
+ * Use the classic editor for the Startseite (homepage).
+ *
+ * The homepage's content is managed entirely via ACF fields. The empty
+ * Gutenberg canvas adds visual noise to the edit screen without serving
+ * any purpose. Disabling the block editor for this one page lets ACF
+ * Pro's "Hide Content Editor" presentation setting do its job.
+ *
+ * @param bool   $use_block_editor  Whether to use the block editor.
+ * @param object $post              The post being edited.
+ * @return bool
+ */
+add_filter( 'use_block_editor_for_post', function ( $use_block_editor, $post ) {
+    if ( isset( $post->post_name ) && $post->post_name === 'startseite' ) {
+        return false;
+    }
+    return $use_block_editor;
+}, 10, 2 );
