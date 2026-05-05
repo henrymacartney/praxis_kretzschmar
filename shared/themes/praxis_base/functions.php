@@ -31,12 +31,16 @@ add_action( 'after_setup_theme', function () {
 } );
 
 /**
- * Enqueue the compiled Tailwind stylesheet.
+ * Enqueue the compiled Tailwind stylesheet and theme scripts.
  *
- * The source lives in /tailwind.css; the compiled output is /build/theme.css.
+ * The source CSS lives in /tailwind.css; the compiled output is /build/theme.css.
  * We don't enqueue style.css — it exists only for WordPress's theme detection.
+ *
+ * The mobile navigation script is loaded in the footer so it executes
+ * after the DOM is built without needing a DOMContentLoaded listener.
  */
 add_action( 'wp_enqueue_scripts', function () {
+    // CSS — compiled Tailwind
     $css_path = PRAXIS_BASE_DIR . '/build/theme.css';
     $css_uri  = PRAXIS_BASE_URI . '/build/theme.css';
 
@@ -46,6 +50,20 @@ add_action( 'wp_enqueue_scripts', function () {
             $css_uri,
             array(),
             (string) filemtime( $css_path ) // Cache-bust on every rebuild.
+        );
+    }
+
+    // JS — mobile navigation toggle
+    $js_path = PRAXIS_BASE_DIR . '/assets/js/mobile-nav.js';
+    $js_uri  = PRAXIS_BASE_URI . '/assets/js/mobile-nav.js';
+
+    if ( file_exists( $js_path ) ) {
+        wp_enqueue_script(
+            'praxis-base-mobile-nav',
+            $js_uri,
+            array(),
+            (string) filemtime( $js_path ),
+            true // load in footer
         );
     }
 } );
