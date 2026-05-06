@@ -1,0 +1,159 @@
+{
+    "key": "group_69fb3e588f366",
+    "title": "Kontakt",
+    "fields": [
+        {
+            "key": "field_69fb3e5800527",
+            "label": "Tagline",
+            "name": "kontakt_tagline",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_69fb3e8500528",
+            "label": "Lead Image",
+            "name": "kontakt_lead_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Foto der Praxis oder des Therapieraums",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_69fb3ecd00529",
+            "label": "Intro",
+            "name": "kontakt_intro",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_69fb3f2c0052a",
+            "label": "Adresse",
+            "name": "kontakt_adresse",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Name, Anschrift, Telefon, E-Mail",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_69fb3f8c0052b",
+            "label": "Anfahrt",
+            "name": "kontakt_anfahrt",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Wegbeschreibung mit ÖPNV und Parken",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_69fb3fd70052c",
+            "label": "Form Shortcode",
+            "name": "kontakt_form_shortcode",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Contact Form 7 shortcode, z.B. [contact-form-7 id=\"123\"]. Leer lassen um das Formular auszublenden.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "21"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1778073661
+}
