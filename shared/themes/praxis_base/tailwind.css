@@ -67,3 +67,75 @@
         color: var(--color-navy-800);
     }
 }
+
+/* ──────────────────────────────────────────────────────────────────
+   Navigation: dropdown sub-menu styling
+   ────────────────────────────────────────────────────────────────── */
+
+/* Hide all sub-menus by default (both desktop and mobile) */
+.sub-menu {
+    display: none;
+}
+
+/* Desktop only (md and up): show sub-menu on hover of parent */
+@media (min-width: 768px) {
+    .menu-item-has-children {
+        position: relative;
+    }
+    
+    .menu-item-has-children:hover > .sub-menu,
+    .menu-item-has-children:focus-within > .sub-menu {
+        display: block;
+    }
+    
+    .sub-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 0.25rem;
+        min-width: 14rem;
+        background-color: var(--color-cream-50);
+        border: 1px solid var(--color-cream-200);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        padding: 0.5rem 0;
+        z-index: 50;
+    }
+    
+    .sub-menu li {
+        display: block;
+    }
+    
+    .sub-menu li a,
+    .sub-menu li span {
+        display: block;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        color: var(--color-navy-600);
+        white-space: nowrap;
+        transition: color 150ms, background-color 150ms;
+    }
+    
+    .sub-menu li a:hover,
+    .sub-menu li a:hover span {
+        color: var(--color-navy-900);
+        background-color: var(--color-cream-100);
+    }
+}
+
+/* Mobile only (below md): show all sub-menu items inline, indented */
+@media (max-width: 767px) {
+    [data-mobile-nav-panel] .sub-menu {
+        display: block;
+        padding-left: 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    [data-mobile-nav-panel] .sub-menu li {
+        margin-top: 0.5rem;
+    }
+    
+    [data-mobile-nav-panel] .sub-menu li span {
+        font-size: 0.875rem;
+        color: var(--color-navy-600);
+    }
+}
