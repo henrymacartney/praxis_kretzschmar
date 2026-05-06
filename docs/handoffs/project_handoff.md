@@ -1,10 +1,28 @@
-# Praxis Kretzschmar — Project Handoff
+# Praxis Kretzschmar — Project Handoff 
 
 **Author:** Dr. Henry Macartney  
-**Document version:** Wednesday, 6 May 2026  
+**Document version:** Wednesday, 6 May 2026 (afternoon update)  
 **Project:** Two German psychotherapy practice websites  
 **Repository:** github.com/henrymacartney/praxis_kretzschmar  
-**Local development:** birgit-kretzschmar.local (Local by Flywheel)  
+**Local development:** birgit-kretzschmar.local (Local by Flywheel)
+
+---
+
+## Table of Contents
+
+1. [Project Overview](#1-project-overview)
+2. [Tech Stack](#2-tech-stack)
+3. [Project Structure](#3-project-structure)
+4. [What's Been Accomplished](#4-whats-been-accomplished)
+5. [Key Decisions Made](#5-key-decisions-made)
+6. [Credentials & Access Details](#6-credentials--access-details)
+7. [Project Rules (CLAUDE.md)](#7-project-rules-claudemd)
+8. [Current State (As of 6 May 2026, afternoon)](#8-current-state-as-of-6-may-2026-afternoon)
+9. [Where Work Paused](#9-where-work-paused)
+10. [What's Next (Priority Order)](#10-whats-next-priority-order)
+11. [Open Questions / Decisions Pending](#11-open-questions--decisions-pending)
+12. [How to Resume Work](#12-how-to-resume-work)
+13. [Contact](#13-contact)
 
 ---
 
@@ -52,6 +70,7 @@ Seven work packages defined in the proposal. Currently executing through them.
 | Database | MySQL 8.0.35, charset utf8mb4 | Local default |
 | CSS | Tailwind 4 | Custom design tokens via `@theme` block; build pipeline via npm |
 | Custom fields | ACF Pro 6.5+ | Note: UI changed significantly from older versions |
+| ACF Local JSON | `acf-json/` folder in theme root | Auto-saves field group changes; auto-loads on activation |
 | Build tool | npm + Tailwind CLI | `npm run dev` watches and rebuilds on save |
 | Local dev | Local by Flywheel | Site at `http://birgitkretzschmar.local/` (note: hyphen stripped by Local) |
 | Version control | git + GitHub | Linear history on `main` branch |
@@ -68,13 +87,16 @@ praxis_kretzschmar/                                    ← project root
 ├── CLAUDE.md                                           ← project rules (committed)
 ├── docs/
 │   ├── angebot_praxen_kretzschmar.docx                ← formal proposal (sent)
-│   └── content-inventory/                              ← content extracted from old sites
-│       ├── birgit_text_content.md
-│       ├── birgit_image_inventory.md
-│       ├── birgit_content_map.md
-│       ├── alex_text_content.md
-│       ├── alex_image_inventory.md
-│       └── alex_content_map.md
+│   ├── content-inventory/                              ← content extracted from old sites
+│   │   ├── birgit_text_content.md
+│   │   ├── birgit_image_inventory.md
+│   │   ├── birgit_content_map.md
+│   │   ├── alex_text_content.md
+│   │   ├── alex_image_inventory.md
+│   │   └── alex_content_map.md
+│   └── handoffs/                                       ← project handoff artefacts
+│       ├── project_handoff.md                          ← this document
+│       └── previous_chat.md                            ← conversation log from Step 10 session
 ├── migration_strato_to_hostinger/                      ← Strato→Hostinger migration plan
 │   ├── docs/
 │   │   └── hostinger_umzug.pdf
@@ -88,11 +110,14 @@ praxis_kretzschmar/                                    ← project root
 │       ├── front-page.php                              ← homepage (reads ACF fields)
 │       ├── page.php / index.php                        ← fallback templates
 │       ├── style.css                                   ← WP theme detection only
-│       ├── tailwind.css                                ← source CSS, @theme tokens, @source dirs
+│       ├── tailwind.css                                ← source CSS, @theme tokens, dropdown CSS
 │       ├── package.json / package-lock.json
 │       ├── page-ueber-mich.php                         ← Über mich page template (Step 9)
 │       ├── template-leistung.php                       ← individual Leistung pages (Step 10)
 │       ├── template-leistungen-overview.php            ← Leistungen overview with auto-listed children
+│       ├── acf-json/                                   ← ACF field group definitions (auto-managed)
+│       │   ├── group_69f9d6b401bba.json                ← Über mich field group
+│       │   └── group_69f9f7c7c674f.json                ← Leistung field group
 │       ├── template-parts/
 │       │   ├── site-header.php                         ← logo, nav, mobile menu panel
 │       │   └── site-footer.php                         ← footer
@@ -117,9 +142,10 @@ praxis_kretzschmar/                                    ← project root
 
 ## 4. What's Been Accomplished
 
-### Commits on GitHub (15 total, linear history)
+### Commits on GitHub (16 total, linear history)
 
 ```
+8dac51d Step 10: Leistung template, Leistungen overview, ACF JSON export, dropdown nav CSS
 1ea58ac Step 9: Über mich page template with ACF field group
 a041307 Step 8: Mobile navigation with hamburger toggle
 685fea7 Add content inventory for Herr Dr. Kretzschmar's site
@@ -135,8 +161,6 @@ e68d108 Step 5: ACF Pro wired to homepage — fields editable in wp-admin
 3938c8d Step 3: Tailwind 4 build pipeline — npm scripts, @theme tokens, compiled output enqueued
 4bc98fe First commit steps 1 & 2: Scaffold praxis_base theme — minimum viable WordPress theme, no styling yet
 ```
-
-**Note:** Step 10 (Leistung template + Leistungen overview) is NOT YET COMMITTED. Local-only.
 
 ### Foundation work (Steps 1–7) — committed, complete
 
@@ -167,6 +191,7 @@ e68d108 Step 5: ACF Pro wired to homepage — fields editable in wp-admin
   - `ueber_mich_werdegang` (wysiwyg)
 - Page populated with real biographical content (4 qualifications, bio, portrait)
 - Layout: hero + two-column (portrait left, bio right) + qualifications list + werdegang + CTA
+- Field group exported to `acf-json/group_69f9d6b401bba.json` (in Step 10 commit)
 
 ### Content inventories (committed)
 
@@ -178,27 +203,48 @@ For each practitioner, three Markdown files in `docs/content-inventory/`:
 
 These are working documents. The Kretzschmars are expected to revise the texts before final integration.
 
-### Step 10 — Leistung template (in progress, NOT committed)
+### Step 10 — Leistung pages (committed as 8dac51d)
 
-- `template-leistung.php` created — shared page template for individual Leistung pages
-- ACF field group "Leistung" with 7 visible fields + 1 Repeater (Sections):
+**Template & infrastructure:**
+
+- `template-leistung.php` — shared page template for individual Leistung pages
+- `template-leistungen-overview.php` — auto-lists child Leistung pages as cards on `/leistungen/`
+- ACF field group "Leistung" with 7 visible fields + 1 Repeater:
   - `leistung_tagline` (text)
   - `leistung_lead_image` (image)
   - `leistung_intro` (wysiwyg)
-  - `leistung_sections` (Repeater: heading + body + image per row)
+  - `leistung_sections` (Repeater: heading + body)
+  - `image` (image, top-level — currently unused)
   - `leistung_quote` (text)
   - `leistung_cta_text` (text, default "Termin vereinbaren")
   - `leistung_cta_link` (URL)
-- `template-leistungen-overview.php` — auto-lists child Leistung pages as cards on `/leistungen/`
-- Tanztherapie page populated with real content and lead image; renders correctly at `/leistungen/tanztherapie/`
-- Three other therapy pages created (Paartherapie, Weiterbildungen, Psychotraumatherapie) but ACF fields not yet populated
-- Termine page created (default template, content not yet built)
-- Page hierarchy: four therapy pages now have `parent = Leistungen`, URLs become `/leistungen/<therapy>/`
+- Field group exported to `acf-json/group_69f9f7c7c674f.json`
+- ACF Local JSON folder `acf-json/` established as canonical store for field group definitions
+
+**Navigation:**
+
+- Page hierarchy: four therapy pages have `parent = Leistungen`, URLs are `/leistungen/<therapy>/`
 - Menu restructured: Leistungen has the four therapies as nested children
+- Dropdown CSS applied to `tailwind.css`:
+  - Desktop (≥768px): hover-revealed dropdown panel with cream background and shadow
+  - Mobile (<768px): inline display below parent in mobile nav panel
+- Verified working on desktop and iPhone 12 viewport
 
-### Step 10.4.4 (dropdown menu CSS) — NOT YET DONE
+**Content populated (Birgit's site):**
 
-The CSS to make the desktop dropdown work and mobile show indented children was prepared but not yet applied. **This is where work paused.**
+- Tanztherapie — full content + lead image
+- Paartherapie — full content + lead image
+- Weiterbildungen — full content + lead image
+- Psychotraumatherapie — full content + lead image (4 sections)
+
+All four pages use voice-matched, modernised German copy drawn from `docs/content-inventory/birgit_text_content.md` and the practitioner's qualifications. Birgit will review and revise.
+
+**Note on field schema:** The Repeater has `heading` and `body` subfields only. The template (`template-leistung.php`) reads `$section['image']` per-section, but no per-section image subfield exists — all four pages were populated with section images blank, so this discrepancy is currently invisible. If per-section images are wanted in future, the Repeater needs an `image` subfield added.
+
+### Documentation handoff (committed as part of 8dac51d)
+
+- `docs/handoffs/project_handoff.md` — this document
+- `docs/handoffs/previous_chat.md` — full conversation log from the Step 10 session
 
 ---
 
@@ -213,8 +259,10 @@ The CSS to make the desktop dropdown work and mobile show indented children was 
 | Both old domains kept | SEO continuity, patients have memorized URLs over years |
 | Email kept entirely separate from web | Different security profiles (Kassenärztliches requires KV-SafeNet); no SMTP entanglement |
 | ACF Pro for content fields | Established WordPress pattern; less custom code than custom post types |
+| ACF Local JSON for version control | Field group definitions live in `acf-json/` and travel with the codebase |
 | Tailwind 4 (not 3) | Modern `@theme` syntax cleaner; more performant build |
 | Self-host Google Fonts before launch | DSGVO requirement (German practice cannot leak visitor IPs to Google) — TODO, not done yet |
+| Modernised voice for therapy page copy | Plain register replacing academic source text; matches reference sites (Kappel, Zentrum-Psychotherapie); subject to Birgit's review |
 
 ### Content & Pages
 
@@ -257,13 +305,13 @@ Note differences from Birgit: Alex has Praxis, Birgit doesn't. Birgit has Termin
 
 - Birgit's portrait at 3648×5472 (high-quality DSLR) — already in Media Library
 - Practice photos (Wartezimmer, Therapieraum, Haus) — same files appear in both Birgit's and Alex's old image libraries since they share premises
-- Stock images from Unsplash (free commercial license) used as placeholders for the four Leistung lead images:
-  - `tanztherapie.jpg` (Tokyo subway/escalator space — concerns flagged but using anyway)
-  - `paartherapie.jpg` (two dark wooden chairs)
-  - `weiterbildungen.jpg` (open book reflected on surface)
-  - `psychotraumatherapie.jpg` (calm lake reflection)
-- All four uploaded to Birgit's Media Library
-- Stock image for Termine (`termine.jpg`) downloaded but not yet wired to a page (no Termine template yet)
+- Five Unsplash images (free commercial license) used as Lead Images for the Leistung pages and Termine. After two iterations of search-and-review, the four therapy lead images were selected by Henry browsing curated Unsplash search URLs:
+  - `leistung-tanztherapie.jpg`
+  - `leistung-paartherapie.jpg` (two dark wooden chairs — strong visual)
+  - `leistung-weiterbildungen.jpg`
+  - `leistung-psychotrauma.jpg` (calm lake reflection — strong visual)
+  - `termine.jpg` (downloaded but not yet wired to a page; no Termine template yet)
+- All five uploaded to Birgit's Media Library
 
 ---
 
@@ -314,24 +362,24 @@ The project has strict working rules in `CLAUDE.md`. Key points:
 
 ---
 
-## 8. Current State (As of 6 May 2026)
+## 8. Current State (As of 6 May 2026, afternoon)
 
 ### What's working
 
 - Homepage renders with Birgit-specific content (real headline, subtitle, welcome text)
 - Über mich page renders with bio, portrait, qualifications, werdegang, CTA
-- Tanztherapie page renders complete (hero, lead image, intro, three sections, quote, CTA)
-- Three other therapy pages exist but show only their title (ACF fields empty)
-- Termine page exists but is empty (default template, no custom content yet)
+- All four therapy pages render complete (hero, lead image, intro, sections, quote, CTA):
+  - Tanztherapie
+  - Paartherapie
+  - Weiterbildungen
+  - Psychotraumatherapie
 - Leistungen overview page exists with intro paragraph, auto-lists the four therapy pages as cards
 - Mobile navigation works (hamburger toggles dropdown panel)
-- Desktop navigation works as flat 5-item nav (Startseite, Über mich, Leistungen, Termine, Kontakt)
+- Desktop navigation works with hover dropdown for Leistungen
+- Mobile navigation shows the four therapies inline below Leistungen
 
 ### What's NOT working / NOT yet done
 
-- **Desktop dropdown for Leistungen** — the four therapy pages are children in the menu but the CSS to show them as a hover dropdown hasn't been added yet
-- **Mobile inline display of submenu** — same issue, the children exist in markup but aren't visible until CSS is added
-- **Three of four therapy pages have empty ACF fields** — Tanztherapie is populated; Paartherapie, Weiterbildungen, Psychotraumatherapie are not
 - **Termine page** — empty, no custom template yet
 - **Kontakt page** — exists but empty, no custom template yet
 - **Self-hosting Google Fonts** — currently loaded from Google CDN (DSGVO problem, must fix before launch)
@@ -352,54 +400,22 @@ The project has strict working rules in `CLAUDE.md`. Key points:
 
 ### Uncommitted local changes
 
-These are sitting on the local machine but not pushed to GitHub:
+State of repo and database after the 6 May afternoon session:
 
-- `template-leistung.php` (new file)
-- `template-leistungen-overview.php` (new file)
-- ACF field group "Leistung" (created in wp-admin, exists in DB)
-- Pages: Tanztherapie populated, Paartherapie/Weiterbildungen/Psychotraumatherapie/Termine created empty
-- Tanztherapie reparented to Leistungen
-- Menu restructured (four therapies indented under Leistungen)
-- Four Leistung images uploaded to Media Library
-- Termine image (`termine.jpg`) uploaded but not wired to anything
-
-**Action required:** When ready to commit, the staging command needs to capture the new template files. ACF field group changes are stored in the database, NOT in the file system, so they don't appear in `git status` — they should be exported to JSON via ACF's export tool and committed separately. *(Not yet done.)*
+- **Repo:** clean (no uncommitted file changes; everything from Step 10 is in commit `8dac51d`)
+- **Database:** Tanztherapie, Paartherapie, Weiterbildungen, Psychotraumatherapie pages populated with full ACF content. This content lives in `wp_postmeta` and is NOT in git. It travels to production via the All-in-One WP Migration plugin at deploy time.
 
 ---
 
 ## 9. Where Work Paused
 
-The last instruction sent (and not yet acted on) was Step 10.4.4a — the CSS for the desktop dropdown menu and mobile inline display.
+The 6 May session ended cleanly with all four therapy pages populated and Step 10 committed. The next natural pieces of work are:
 
-The CSS was prepared and ready to paste into `tailwind.css`:
+1. Update this handoff document (in progress as the last action of the session)
+2. Build the Termine page template
+3. Build the Kontakt page template
 
-```css
-/* Hide all sub-menus by default */
-.sub-menu { display: none; }
-
-@media (min-width: 768px) {
-    .menu-item-has-children { position: relative; }
-    .menu-item-has-children:hover > .sub-menu,
-    .menu-item-has-children:focus-within > .sub-menu { display: block; }
-    .sub-menu {
-        position: absolute; top: 100%; left: 0;
-        margin-top: 0.25rem; min-width: 14rem;
-        background-color: var(--color-cream-50);
-        border: 1px solid var(--color-cream-200);
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        padding: 0.5rem 0; z-index: 50;
-    }
-    /* …list item styles… */
-}
-
-@media (max-width: 767px) {
-    [data-mobile-nav-panel] .sub-menu {
-        display: block; padding-left: 1rem; margin-top: 0.5rem;
-    }
-}
-```
-
-Full version is in the conversation history.
+No half-finished work, no broken state. Resume from any of these.
 
 ---
 
@@ -407,32 +423,28 @@ Full version is in the conversation history.
 
 ### Immediate
 
-1. **Apply the dropdown CSS** (Step 10.4.4a) — get the desktop dropdown and mobile indent working
-2. **Commit Step 10** — large commit covering:
-  - `template-leistung.php`
-  - `template-leistungen-overview.php`
-  - The dropdown CSS in `tailwind.css`
-  - ACF field group export (JSON, in `acf-json/` folder so it autoloads)
-3. **Verify final menu** — five top-level items, hover-expand for Leistungen on desktop, indented inline on mobile
+1. **Build Termine page template** — Birgit needs a way to publish appointment-availability information; image asset (`termine.jpg`) is already in the Media Library awaiting use
+2. **Build Kontakt page template** — practice address, phone, email, contact form, DSGVO notice; coordinates with Impressum/Datenschutz work below
+3. **Decide what to do with the Praxis page** (currently exists as draft, not in menu, content unclear — ask Birgit or bin)
 
-### Short-term (next 2-3 sessions)
+### Short-term
 
-4. **Populate Paartherapie, Weiterbildungen, Psychotraumatherapie ACF fields** with real content from `docs/content-inventory/birgit_text_content.md` — but only as starting points; Birgit will revise
-5. **Build Termine page template** with appointment-booking content
-6. **Build Kontakt page template** including the Datenschutzerklärung
-7. **Decide what to do with the Praxis page** (currently exists, not in menu, content unclear)
+4. **Birgit's child theme** — scaffold `shared/themes/birgit_child/`
+5. **Self-host Google Fonts** (DSGVO compliance)
+6. **Image optimization** — compress the 12 MB portrait
+7. **Impressum and Datenschutzerklärung pages** (legally required, lawyer review)
+8. **Footer content** — replace placeholder with proper site footer (links, address, legal)
 
 ### Medium-term
 
-8. **Birgit's child theme** — scaffold `shared/themes/birgit_child/`
-9. **Self-host Google Fonts** (DSGVO compliance)
-10. **Image optimization** — compress the 12 MB portrait
-11. **Impressum and Datenschutzerklärung pages** (legally required, lawyer review)
-12. **Pre-launch hardening:**
+9. **Pre-launch hardening:**
   - Caching plugin (e.g. WP Super Cache or W3 Total Cache)
   - Security plugin (e.g. Wordfence)
   - SEO redirect map: old `?page_id=X` → new clean URLs
-13. **SDLC documentation** (URS, RA, FRS, Test Plan, RTM)
+10. **Cross-browser / mobile QA** — beyond the iPhone 12 preset, real device testing
+11. **Performance + accessibility audit** — Lighthouse, alt text review, headings hierarchy
+12. **SDLC documentation** (URS, RA, FRS, Test Plan, RTM)
+13. **Birgit content review pass** — sit with Birgit, walk through every populated page, capture her edits
 
 ### Alex's parallel build
 
@@ -456,9 +468,10 @@ Full version is in the conversation history.
 1. **Praxis page on Birgit's site** — keep, bin, or ask Birgit?
 2. **Praxis photo strategy** — both practices share the same physical premises and image files. On the new sites, should they each upload their own copy, or share via a parent-theme media folder?
 3. **Singular vs plural Leistungen page intro** — the page is "Leistungen" but the parent of just four items. Could rename to "Therapieangebote" if Birgit prefers.
-4. **Replacement images for Tanztherapie and Weiterbildungen** — the current placeholders (Tokyo subway, train notebook) are demo-acceptable but not on-brand. Birgit should approve or replace.
-5. **Mobile dropdown UX** — current plan is "always show inline indented." Alternative: tap-to-expand. Decision can be deferred.
+4. **Therapy page copy review** — current copy is Henry's modernised draft drawn from source content. Birgit needs to read and revise. Particularly Tanztherapie and Psychotraumatherapie, which are her core specialisms.
+5. **Mobile dropdown UX** — current behaviour: therapies show inline below Leistungen, centered. Alternatives considered (left-aligned indentation, tap-to-expand) deferred. Birgit may have a view.
 6. **Werdegang page section** — currently has placeholder "Weitere Stationen ergänze ich in Kürze." Birgit needs to fill in.
+7. **Repeater image subfield** — the Leistung Repeater has no per-section image. The template assumes one. Currently invisible because no page uses per-section images. Decide whether to add the subfield (clean) or remove the template's reference (also clean).
 
 ---
 
@@ -472,9 +485,9 @@ To continue this project after a break:
 4. **Start the Tailwind watcher** in terminal: `cd shared/themes/praxis_base && npm run dev`
 5. **Verify the site loads:** `http://birgitkretzschmar.local/`
 6. **Review this handoff doc** to remember where we paused
-7. **Pick up at "Where Work Paused"** (Section 9)
+7. **Pick up at "What's Next"** (Section 10)
 
-The next chat session should reference this document and the linear commit history. The conversation history of how we got here is preserved in journals/transcripts but isn't required reading — the code, commits, content inventory files, and this handoff carry the full context needed to continue.
+The next chat session should reference this document and the linear commit history. The conversation history of how we got here is preserved in `docs/handoffs/previous_chat.md` but isn't required reading — the code, commits, content inventory files, and this handoff carry the full context needed to continue.
 
 ---
 
