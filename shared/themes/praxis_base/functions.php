@@ -88,6 +88,20 @@ add_action('wp_enqueue_scripts', function () {
             );
         }
     }
+
+    // JS — back-to-top button (loaded on every page)
+    $back_to_top_path = PRAXIS_BASE_DIR . '/assets/js/back-to-top.js';
+    $back_to_top_uri = PRAXIS_BASE_URI . '/assets/js/back-to-top.js';
+
+    if (file_exists($back_to_top_path)) {
+        wp_enqueue_script(
+            'praxis-base-back-to-top',
+            $back_to_top_uri,
+            array(),
+            (string)filemtime($back_to_top_path),
+            true
+        );
+    }
 });
 
 /**
