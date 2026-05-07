@@ -9,10 +9,26 @@
  * @package PraxisBase
  */
 ?>
-<header class="site-header bg-cream-50 border-b border-cream-200 relative">
+<header class="site-header sticky top-0 z-40 bg-cream-100 border-b border-cream-200">
 	<div class="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="font-display text-xl font-medium tracking-tight text-navy-800">
-			<?php bloginfo( 'name' ); ?>
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-4 group">
+			<?php if ( has_custom_logo() ) : ?>
+				<?php
+				$logo_id  = get_theme_mod( 'custom_logo' );
+				$logo_src = wp_get_attachment_image_src( $logo_id, 'medium' );
+				if ( $logo_src ) :
+					?>
+					<img
+						src="<?php echo esc_url( $logo_src[0] ); ?>"
+						alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
+						class="h-10 md:h-12 w-auto"
+					/>
+				<?php endif; ?>
+			<?php endif; ?>
+			<span class="font-sans text-xs md:text-sm font-medium tracking-wider uppercase text-navy-800 leading-tight">
+				Birgit Kretzschmar<br class="hidden sm:inline" />
+				<span class="text-navy-600">· Praxis für Psychotherapie</span>
+			</span>
 		</a>
 		
 		<nav aria-label="<?php esc_attr_e( 'Hauptmenü', 'praxis-base' ); ?>" class="hidden md:block">
