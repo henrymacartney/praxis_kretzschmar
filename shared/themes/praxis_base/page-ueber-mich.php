@@ -94,10 +94,14 @@ $werdegang      = get_field( 'ueber_mich_werdegang' );
 
         <section class="py-10 bg-navy-800 text-cream-50 text-center">
             <div class="mx-auto max-w-3xl px-6">
-                <a href="<?php echo esc_url( home_url( '/termine/' ) ); ?>"
+				<a href="<?php echo esc_url( home_url( '/kontakt/' ) ); ?>"
+	               class="inline-block font-sans text-sm tracking-wide uppercase border-b border-cream-200 pb-1 hover:border-cream-50 transition-colors">
+					Kontakt aufnehmen
+				</a>
+               <!-- <a href="<?php /*echo esc_url( home_url( '/termine/' ) ); */?>"
                    class="inline-block font-sans text-sm tracking-wide uppercase border-b border-cream-200 pb-1 hover:border-cream-50 transition-colors">
                     Termin vereinbaren
-                </a>
+                </a>-->
             </div>
         </section>
 

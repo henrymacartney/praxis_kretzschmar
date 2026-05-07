@@ -19,8 +19,10 @@ $lead_image = get_field( 'leistung_lead_image' );
 $intro      = get_field( 'leistung_intro' );
 $sections   = get_field( 'leistung_sections' );
 $quote      = get_field( 'leistung_quote' );
-$cta_text   = get_field( 'leistung_cta_text' ) ?: 'Termin vereinbaren';
-$cta_link   = get_field( 'leistung_cta_link' ) ?: home_url( '/termine/' );
+/*$cta_text   = get_field( 'leistung_cta_text' ) ?: 'Termin vereinbaren';
+$cta_link   = get_field( 'leistung_cta_link' ) ?: home_url( '/termine/' );*/
+$cta_text   = get_field( 'leistung_cta_text' ) ?: 'Kontakt aufnehmen';
+$cta_link   = get_field( 'leistung_cta_link' ) ?: home_url( '/kontakt/' );
 ?>
 	
 	<main id="main" class="site-main flex-1">

@@ -1,6 +1,6 @@
 # Herr Dr. Kretzschmar — Inhaltsbestand alter Webseite
 
-Quelle: AI1WM-Backup vom 16. Oktober 2025, extrahiert aus `database.sql`.
+Quelle: AI1WM-Backup vom 16. Oktober 2025, extrahiert aus `database.sql`.  
 Originaldomain: `kretzschmar-wiesbaden.de`. WordPress 6.8.3, MariaDB 10.11.
 
 Diese Inhalte sind als Ausgangspunkt für die Neugestaltung gedacht. 
