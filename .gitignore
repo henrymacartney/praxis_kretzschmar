@@ -2,6 +2,12 @@ cat > .gitignore <<'EOF'
 # macOS
 .DS_Store
 
+# exclude Microsoft ghosts
+~$*
+
+# exclude shared build folders
+shared/themes/*/build/
+
 # Node
 node_modules/
 package-lock.json
