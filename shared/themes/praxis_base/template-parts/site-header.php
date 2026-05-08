@@ -25,9 +25,9 @@
 					/>
 				<?php endif; ?>
 			<?php endif; ?>
-			<span class="font-sans text-xs md:text-sm font-medium tracking-wider uppercase text-navy-800 leading-tight">
-				Birgit Kretzschmar<br class="hidden sm:inline" />
-				<span class="text-navy-600">· Praxis für Psychotherapie</span>
+			<span class="font-sans text-xs md:text-sm font-medium tracking-wider uppercase text-navy-800
+			leading-tight"><?php echo get_bloginfo('name'); ?><br class="hidden sm:inline" />
+				<span class="text-navy-600">· <?php echo get_bloginfo('description'); ?></span>
 			</span>
 		</a>
 		
