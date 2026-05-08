@@ -1,0 +1,20 @@
+/*
+Theme Name: Alex Kretzschmar
+Theme URI: https://kretzschmar-wiesbaden.de
+Template: praxis_base
+Author: Dr. Henry Macartney
+Author URI: https://praxis-kretzschmar.de
+Description: Child theme for Herr Dr. Alexander Kretzschmar — overrides the praxis_base parent with practice-specific branding (logo-derived warm-red accent, full-bleed B/W landing-page hero) and a bespoke front-page layout. Body text and page background are inherited from the parent so both Praxen sites read as siblings.
+Version: 0.1.0
+Requires at least: 6.5
+Tested up to: 6.9
+Requires PHP: 8.3
+License: Proprietary
+Text Domain: alex-child
+*/
+
+/*
+   This file exists for WordPress theme detection only.
+   Compiled CSS is enqueued by functions.php from /build/theme.css,
+   built by Tailwind 4 from /tailwind.css.
+*/

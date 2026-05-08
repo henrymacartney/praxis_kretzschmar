@@ -1,0 +1,37 @@
+/*
+ * Alex Kretzschmar — Tailwind 4 source.
+ *
+ * Inherits navy + cream + stone + typography from praxis_base.
+ * Overrides the accent tokens with logo-derived warm-red + orange.
+ *
+ * Logo colour sampling (Alex's logo3.jpg):
+ *   Outer ring (dark warm-red): rgb(171, 40, 21)  → #AB2815
+ *   Inner core (warm orange):   rgb(251, 148, 75) → #FB944B
+ *
+ * The parent already defines --color-accent-{50,200,600,800} as aliases
+ * to navy. We redefine those four custom properties with the warm-red
+ * scale below, and add a separate --color-warm-* scale for the orange
+ * accent (used sparingly: icon-square backgrounds, hover ornaments).
+ */
+
+@import "tailwindcss";
+
+@source "./**/*.php";
+
+@theme {
+    /* ─── Warm-red — primary accent (CTAs, contact band, link hover) ─ */
+    --color-accent-50:  #FBE9E5;
+    --color-accent-100: #F4C5BC;
+    --color-accent-200: #E89A8B;
+    --color-accent-400: #C95440;
+    --color-accent-600: #AB2815;   /* logo outer ring — base accent */
+    --color-accent-800: #8E1F10;   /* hover / pressed state */
+    --color-accent-900: #6F170B;
+
+    /* ─── Warm orange — secondary accent (icon tints, soft highlights) */
+    --color-warm-50:   #FEF3EA;
+    --color-warm-100:  #FDE3CC;
+    --color-warm-300:  #FBC79A;
+    --color-warm-500:  #FB944B;    /* logo inner core */
+    --color-warm-700:  #C76F2E;
+}
