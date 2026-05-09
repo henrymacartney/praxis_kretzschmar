@@ -40,3 +40,23 @@ add_action( 'wp_enqueue_scripts', function () {
         );
     }
 }, 20 );
+
+/**
+ * Register the ACF Options Page used by the footer field group.
+ *
+ * The footer template-part reads its fields with the `'option'` second
+ * argument; that only works once an Options Page is registered. Guarded
+ * on `acf_add_options_page` existing so the theme is safe to activate
+ * before ACF Pro is installed.
+ */
+add_action( 'acf/init', function () {
+    if ( function_exists( 'acf_add_options_page' ) ) {
+        acf_add_options_page( array(
+            'page_title' => __( 'Footer-Einstellungen', 'alex-child' ),
+            'menu_title' => __( 'Footer', 'alex-child' ),
+            'menu_slug'  => 'alex-footer-options',
+            'capability' => 'edit_theme_options',
+            'redirect'   => false,
+        ) );
+    }
+} );
