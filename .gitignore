@@ -8,6 +8,9 @@ cat > .gitignore <<'EOF'
 # exclude shared build folders
 shared/themes/*/build/
 
+# exxclude claude zip file transfers
+claude_transfers/
+
 # Node
 node_modules/
 package-lock.json

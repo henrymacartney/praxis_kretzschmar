@@ -96,7 +96,7 @@
             "label": "Hero CTA Primary URL",
             "name": "hero_cta_primary_url",
             "aria-label": "",
-            "type": "url",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -105,9 +105,12 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "\/kontakt\/",
+            "default_value": "",
+            "maxlength": "",
             "allow_in_bindings": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_69fea97ba1b22",
@@ -135,7 +138,7 @@
             "label": "Hero CTA Secondary URL",
             "name": "hero_cta_secondary_url",
             "aria-label": "",
-            "type": "url",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -144,9 +147,12 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "\/ueber-mich\/",
+            "default_value": "",
+            "maxlength": "",
             "allow_in_bindings": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -170,5 +176,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1778297365
+    "modified": 1778560469
 }

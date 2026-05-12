@@ -91,7 +91,7 @@
             "label": "Über CTA URL",
             "name": "ueber_cta_url",
             "aria-label": "",
-            "type": "url",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -100,9 +100,12 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "\/ueber-mich\/",
+            "default_value": "",
+            "maxlength": "",
             "allow_in_bindings": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_69feb0a1ddf00",
@@ -152,5 +155,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1778301453
+    "modified": 1778560666
 }
