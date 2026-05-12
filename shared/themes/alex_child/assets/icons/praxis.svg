@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <title>Praxis</title>
+  <!-- Building outline -->
+  <path d="M4 21 V9 L12 4 L20 9 V21 Z"/>
+  <!-- Ground line -->
+  <path d="M2 21 H22"/>
+  <!-- Door -->
+  <path d="M10 21 V14 H14 V21"/>
+  <!-- Window left -->
+  <rect x="6.5" y="11.5" width="2.5" height="2.5"/>
+  <!-- Window right -->
+  <rect x="15" y="11.5" width="2.5" height="2.5"/>
+</svg>

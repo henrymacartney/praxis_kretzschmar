@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <title>Coaching</title>
+  <!-- Compass outer ring -->
+  <circle cx="12" cy="12" r="9"/>
+  <!-- Compass needle (diamond shape, north pointing up) -->
+  <path d="M12 5 L14.5 12 L12 19 L9.5 12 Z"/>
+  <!-- North marker dot -->
+  <circle cx="12" cy="5" r="0.5" fill="currentColor"/>
+</svg>
