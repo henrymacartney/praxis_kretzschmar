@@ -35,3 +35,21 @@
     --color-warm-500:  #FB944B;    /* logo inner core */
     --color-warm-700:  #C76F2E;
 }
+
+/* ─── Item 12: Hero parallax + extra fade ──────────────────────── */
+.hero .absolute.bg-cover {
+    background-attachment: fixed;
+    opacity: 0.2;
+}
+
+@media (max-width: 768px) {
+    .hero .absolute.bg-cover {
+        background-attachment: scroll;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero .absolute.bg-cover {
+        background-attachment: scroll;
+    }
+}
