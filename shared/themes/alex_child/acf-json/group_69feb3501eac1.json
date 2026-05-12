@@ -72,7 +72,7 @@
                     "label": "URL",
                     "name": "url",
                     "aria-label": "",
-                    "type": "url",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -82,8 +82,11 @@
                         "id": ""
                     },
                     "default_value": "",
+                    "maxlength": "",
                     "allow_in_bindings": 0,
                     "placeholder": "",
+                    "prepend": "",
+                    "append": "",
                     "parent_repeater": "field_69feb397004a1"
                 }
             ]
@@ -137,7 +140,7 @@
                     "label": "URL",
                     "name": "url",
                     "aria-label": "",
-                    "type": "url",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -147,8 +150,11 @@
                         "id": ""
                     },
                     "default_value": "",
+                    "maxlength": "",
                     "allow_in_bindings": 0,
                     "placeholder": "",
+                    "prepend": "",
+                    "append": "",
                     "parent_repeater": "field_69feb3ff004a2"
                 }
             ]
@@ -302,5 +308,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1778300798
+    "modified": 1778566695
 }
