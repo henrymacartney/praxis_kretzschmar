@@ -211,7 +211,7 @@
             "label": "CTA Link",
             "name": "leistung_cta_link",
             "aria-label": "",
-            "type": "url",
+            "type": "text",
             "instructions": "Ziel-Link der CTA. Standardmäßig auf \/termine\/ verweisen",
             "required": 0,
             "conditional_logic": 0,
@@ -221,8 +221,11 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": "",
             "allow_in_bindings": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -246,5 +249,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1778050619
+    "modified": 1778578120
 }

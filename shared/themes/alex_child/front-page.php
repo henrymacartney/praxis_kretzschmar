@@ -86,7 +86,8 @@ $render_icon = function ( $name ) {
 				<div class="absolute inset-0 bg-gradient-to-b from-navy-900/60 via-navy-900/40 to-navy-900/70" aria-hidden="true"></div>
 			<?php endif; ?>
 
-			<div class="relative mx-auto max-w-4xl px-6 py-32 md:py-44 text-center">
+<!--			<div class="relative mx-auto max-w-4xl px-6 py-32 md:py-44 text-center">-->
+			<div class="relative mx-auto max-w-4xl px-6 py-52 md:py-72 text-center">
 				<?php if ( $hero_headline ) : ?>
 					<h1 class="font-display text-4xl md:text-6xl font-medium tracking-tight text-cream-50 mb-6 leading-tight">
 						<?php echo esc_html( $hero_headline ); ?>

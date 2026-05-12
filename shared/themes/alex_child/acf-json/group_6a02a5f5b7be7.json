@@ -89,7 +89,7 @@
             "allow_in_bindings": 0,
             "rows": "",
             "placeholder": "",
-            "new_lines": ""
+            "new_lines": "br"
         },
         {
             "key": "field_6a02a709316da",
@@ -134,5 +134,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1778558819
+    "modified": 1778581347
 }

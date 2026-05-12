@@ -60,3 +60,16 @@ add_action( 'acf/init', function () {
         ) );
     }
 } );
+
+/**
+ * Tell ACF to also load Local JSON from the parent theme.
+ *
+ * By default ACF only scans the active theme's acf-json/ folder. Since
+ * praxis_base ships shared field groups (Leistung, Über mich, Kontakt,
+ * Termine, Homepage) that the child theme inherits, we need to add the
+ * parent's acf-json/ to the load paths.
+ */
+add_filter( 'acf/settings/load_json', function ( $paths ) {
+    $paths[] = get_template_directory() . '/acf-json';
+    return $paths;
+} );

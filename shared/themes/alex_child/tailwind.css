@@ -53,3 +53,13 @@
         background-attachment: scroll;
     }
 }
+
+/* ─── Hide hamburger button on desktop (≥768px) ────────────────── */
+@media (min-width: 768px) {
+    [data-mobile-nav-toggle] {
+        display: none;
+    }
+    [data-mobile-nav-panel] {
+        display: none;
+    }
+}
