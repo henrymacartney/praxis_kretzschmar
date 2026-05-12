@@ -126,9 +126,26 @@ add_action('init', function () {
  * @param object $post The post being edited.
  * @return bool
  */
-add_filter('use_block_editor_for_post', function ($use_block_editor, $post) {
-    if (isset($post->post_name) && $post->post_name === 'startseite') {
+add_filter( 'use_block_editor_for_post', function( $use_block_editor, $post ) {
+    $acf_driven_slugs = array(
+        'startseite',
+        'ueber-mich',
+        'kontakt',
+        'tiefenpsychologie',
+        'gestalttherapie',
+        'psychoonkologie',
+        'hypnotherapie',
+        'coaching',
+        'praxis',
+        'leistungen',
+        'tanztherapie',
+        'paartherapie',
+        'weiterbildungen',
+        'psychotraumatherapie',
+        'termine',
+    );
+    if ( in_array( $post->post_name, $acf_driven_slugs, true ) ) {
         return false;
     }
     return $use_block_editor;
-}, 10, 2);
+}, 10, 2 );
