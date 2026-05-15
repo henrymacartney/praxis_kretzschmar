@@ -27,7 +27,7 @@
     --color-accent-600: #AB2815;   /* logo outer ring — base accent */
     --color-accent-800: #8E1F10;   /* hover / pressed state */
     --color-accent-900: #6F170B;
-
+    
     /* ─── Warm orange — secondary accent (icon tints, soft highlights) */
     --color-warm-50:   #FEF3EA;
     --color-warm-100:  #FDE3CC;
@@ -51,6 +51,20 @@
 @media (prefers-reduced-motion: reduce) {
     .hero .absolute.bg-cover {
         background-attachment: scroll;
+    }
+}
+
+/* ─── Mobile hero background — portrait variant ───────────────── */
+@media (max-width: 768px) {
+    .hero .absolute.bg-cover {
+        background-image: url('../assets/images/consultation_mobile_bw_web.jpg') !important;
+    }
+}
+
+/* ─── Tablet hero background — portrait variant ───────────────── */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero .absolute.bg-cover {
+        background-image: url('../assets/images/consultation_tablet_bw_web.jpg') !important;
     }
 }
 
