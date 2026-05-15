@@ -234,6 +234,172 @@
                     "parent_repeater": "field_69fb1d7268d10"
                 }
             ]
+        },
+        {
+            "key": "field_70a1b2c3d4e5f",
+            "label": "Regelmäßige Termine",
+            "name": "termine_wiederholend",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Wiederkehrende Termine ohne festes Datum (z. B. „Samstags von 11:00–17:00 Uhr“).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Regelmäßigen Termin hinzufügen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_70a1b2c3d4e60",
+                    "label": "Titel",
+                    "name": "titel",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_70a1b2c3d4e5f"
+                },
+                {
+                    "key": "field_70a1b2c3d4e61",
+                    "label": "Wiederholung",
+                    "name": "wiederholung",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "z. B. „Samstags von 11:00–17:00 Uhr“",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_70a1b2c3d4e5f"
+                },
+                {
+                    "key": "field_70a1b2c3d4e62",
+                    "label": "Ort",
+                    "name": "ort",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Psychotherapeutische Praxis, Nussbaumstr. 5, 65187 Wiesbaden",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_70a1b2c3d4e5f"
+                },
+                {
+                    "key": "field_70a1b2c3d4e63",
+                    "label": "Gruppentyp",
+                    "name": "gruppentyp",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "offene_gruppe": "Offene Gruppe",
+                        "geschlossene_gruppe": "Geschlossene Gruppe",
+                        "tagesseminar": "Tagesseminar",
+                        "einzeltermin": "Einzeltermin"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 1,
+                    "allow_in_bindings": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_70a1b2c3d4e5f"
+                },
+                {
+                    "key": "field_70a1b2c3d4e64",
+                    "label": "Beschreibung",
+                    "name": "beschreibung",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "allow_in_bindings": 0,
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "parent_repeater": "field_70a1b2c3d4e5f"
+                },
+                {
+                    "key": "field_70a1b2c3d4e65",
+                    "label": "Kosten",
+                    "name": "kosten",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "Optional. z. B. „Eigene Aufstellung: 100 €; Resonanzgeber*innen: 20 €“.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "allow_in_bindings": 0,
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "parent_repeater": "field_70a1b2c3d4e5f"
+                }
+            ]
         }
     ],
     "location": [
@@ -257,5 +423,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1778068689
+    "modified": 1778824285
 }
