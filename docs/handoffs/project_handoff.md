@@ -1,7 +1,7 @@
 # Praxis Kretzschmar — Project Handoff  
 
 **Author:** Dr. Henry Macartney  
-**Document version:** Friday, 8 May 2026 (end of Alex scaffolding session)  
+**Document version:** Tuesday, 12 May 2026 (end of Alex content-population session)  
 **Project:** Kretzschmar psychotherapy practice websites  
 **Repository:** github.com/henrymacartney/praxis_kretzschmar  
 **Local development:** birgit-kretzschmar.local (Local by Flywheel)
@@ -17,7 +17,7 @@
 5. [Key Decisions Made](#5-key-decisions-made)
 6. [Credentials & Access Details](#6-credentials--access-details)
 7. [Project Rules (CLAUDE.md)](#7-project-rules-claudemd)
-8. [Current State (As of 8 May 2026, end of Alex scaffolding)](#8-current-state-as-of-8-may-2026-end-of-alex-scaffolding)
+8. [Current State (As of 12 May 2026, end of Alex content-population)](#8-current-state-as-of-12-may-2026-end-of-alex-content-population)
 9. [Where Work Paused](#9-where-work-paused)
 10. [What's Next (Priority Order)](#10-whats-next-priority-order)
 11. [Open Questions / Decisions Pending](#11-open-questions--decisions-pending)
@@ -82,6 +82,8 @@ and a proposal will be sent in the coming week. Mentioned here only for
 project-record completeness; commercial details are out of scope for this
 document.
 
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## 2. Tech Stack
@@ -99,6 +101,8 @@ document.
 | Version control                 | git + GitHub                                       | Linear history on `main` branch                                                                         |
 | Contact form                    | Contact Form 7 (CF7)                               | German labels, DSGVO consent checkbox, basic styling matching design system                             |
 | Production deployment (planned) | Hostinger Premium + All-in-One WP Migration plugin | Not yet executed                                                                                        |
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -217,6 +221,8 @@ gain.
 - `*.zip` files anywhere in the repo (added 7 May 2026)
 - `~$*` files (MS Word lock files; should be added if not present)
 
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## 4. What's Been Accomplished
@@ -224,6 +230,16 @@ gain.
 ### Recent commits on GitHub (most recent first)
 
 ```
+d67ffbe alex_child: load parent ACF JSON, hide hamburger on desktop, add logo asset, hero height; convert Leistung CTA Link to Text; Alex Kontakt Adresse <br> formatting
+27a463c alex_child: add parallax effect and additional opacity fade to Startseite hero
+0523393 alex_child: convert Hero/Leistungen/Über/Kontakt URL fields to Text; remove previous_chat.md
+3bb39f2 committed sites images (hero JPGs + portrait + notes under alex_child/assets/images/)
+f12a234 alex_child: change Footer Schnelllinks/Leistungen/Socials url subfields from URL to Text
+ec3df9a alex_child: add six Leistungen SVG icons
+698c420 Add Alex Über mich and Alex Kontakt field groups; extend Gutenberg-disable to ACF-driven pages
+3765ac8 alex_child: register Footer Options Page and export five ACF field groups
+cbc2207 gitignore: wildcard build/ across themes; ignore Word lock files
+5fb357a docs: fold 8 May Alex scaffolding session into project_handoff
 addc5a7 Ignore zip files
 3767e50 Remove large zip file
 a7bb459 commit modification to nav bar; colour change; nav bar made sticky
@@ -458,6 +474,191 @@ shared parent-theme bug fix.
 
 ---
 
+### 12 May 2026 session — Alex site content-populated and demo-ready (committed across multiple commits)
+
+**Goal:** populate Alex's site with real content end-to-end so Alex
+can review the demo. Birgit's site untouched except where parent-theme
+changes incidentally apply (Leistung CTA field type, Gutenberg disable
+filter extension — both benign for her).
+
+**ACF Pro and CF7 plugins installed on Alex's site.**
+
+**Five Alex-specific child-theme ACF field groups created in wp-admin,
+exported to `alex_child/acf-json/`:**
+
+- Alex Hero (hero_background_image, hero_headline, hero_subheadline,
+  two CTAs)
+- Alex Leistungen Grid (heading, intro, six-card Repeater with icon /
+  title / summary / link sub-fields)
+- Alex Über mich Band (heading, lead, body, CTA, portrait)
+- Alex Kontakt CTA Band (heading, sub, two CTAs)
+- Alex Footer (Options Page; about blurb, address, phone, email,
+  copyright, three Repeaters for Schnelllinks / Leistungen / Socials)
+
+**ACF Options Page registered** in `alex_child/functions.php` via
+`acf_add_options_page()` for the Alex Footer field group.
+
+**Parent ACF JSON loaded from child theme.** Added an
+`acf/settings/load_json` filter to `alex_child/functions.php` so ACF
+on Alex's site reads field groups from both `alex_child/acf-json/` and
+`praxis_base/acf-json/`. Without this, the parent's Leistung / Über mich
+/ Kontakt / Termine / Homepage field groups weren't visible on Alex's
+site, even though the JSON files existed on disk.
+
+**URL → Text field-type conversions** across Alex's child theme field
+groups and the parent's Leistung field group. ACF's URL field type
+rejects relative paths like `/kontakt/`; converting affected fields
+to Text removes that validation while preserving the field's purpose.
+Footer Socials URL sub-field intentionally left as URL type (Alex has
+no social channels; field stays empty).
+
+**Six per-service SVG icons created** at
+`alex_child/assets/icons/` (Heroicons-compatible outline style,
+`viewBox="0 0 24 24"`, `stroke="currentColor"`):
+
+- `tiefenpsychologie.svg` (iceberg)
+- `gestalttherapie.svg` (two overlapping circles)
+- `psychoonkologie.svg` (shield with heart)
+- `hypnotherapie.svg` (brain with halo)
+- `coaching.svg` (compass with needle)
+- `praxis.svg` (building with door)
+
+**Hero background image processed and uploaded:**
+
+- Sourced `consultation_bw.jpg` from Pexels (free-licence, two-figure
+  anonymous therapist + patient motif)
+- Web-sized derivative `consultation_bw_web.jpg` at 2400×1600, 8-bit
+  grayscale, 446 KB
+- Both committed to `alex_child/assets/images/`
+- Assigned to the Startseite Hero Background Image ACF field
+
+**Portrait image re-encoded:** Alex's portrait
+`Alexander-Kretzschmar-250409-013-web.jpg` re-encoded at the same
+1063×709 dimensions, JPEG quality 85, progressive — from 416 KB to
+80 KB (81% smaller, no visible quality loss). Stored as
+`alex_kretzschmar_portrait.jpg` in the alex_child assets folder and
+uploaded to the WP media library.
+
+**Startseite ACF fields populated** (all five bands):
+
+- Hero with headline / subheadline / image / two CTAs
+- Leistungen Grid with intro paragraph and six Repeater rows (each
+  with icon, title, ~2-sentence summary, and link to the corresponding
+  Leistung page)
+- Über mich Band with heading / lead / body / CTA / portrait
+- Kontakt CTA Band with heading / sub / two CTAs
+
+**Footer Options Page populated** with Über uns blurb, complete
+Kontaktinfo (address / phone / email), copyright, four Schnelllinks
+rows, six Leistungen rows. Socials Repeater left empty (deliberate).
+
+**All eight interior pages populated:**
+
+- Über mich — tagline, portrait, bio (3 paragraphs), six
+  Qualifikationen Repeater rows, Werdegang (2 paragraphs)
+- Tiefenpsychologie, Gestalttherapie, Psychoonkologie, Hypnotherapie,
+  Coaching, Praxis — each with tagline, intro paragraph, three
+  Repeater sections (heading + body), CTA. Six therapy pages all
+  using the parent's `template-leistung.php`.
+- Kontakt — tagline, intro paragraph, address block (with `<br>`
+  formatting for line breaks), Contact Form 7 shortcode
+
+**Contact Form 7 form created** ("Kontakt Standardformular") on Alex's
+site, mirroring Birgit's form: Name, E-Mail, Betreff, Nachricht fields,
+DSGVO consent checkbox linking to `/datenschutz/`, German labels and
+button text. Mail tab configured to deliver to
+`dr.kretzschmar-wiesbaden@t-online.de`. Shortcode pasted into the
+Kontakt page's Form Shortcode ACF field.
+
+**Gutenberg-disable filter extended** in `praxis_base/functions.php`
+to cover Alex's ACF-driven pages (Über mich, Kontakt, six therapy
+sub-pages on both sites). Prevents the Gutenberg "Meta boxes" drawer
+from hiding ACF fields behind a collapsed UI element.
+
+**Page Template assignments** on Alex's six Leistung sub-pages set to
+"Leistung" via Page Attributes. The parent's Leistung field group
+location rule (`page_template == template-leistung.php`) requires
+this for the field group to appear on the edit screen.
+
+**Logo and favicon added:**
+
+- Logo source `logo3.jpg` (237×243, white background) converted to
+  transparent-background PNG `logo_alex.png` and committed to
+  `alex_child/assets/images/`
+- Uploaded to media library and set as Custom Logo via
+  Appearance → Customise → Site Identity
+- Header now renders the logo to the left of the wordmark via the
+  parent template's existing `has_custom_logo()` block
+- Same PNG set as Site Icon (favicon) — appears in browser tabs
+
+**Hamburger menu hidden on desktop.** Added a CSS media query block
+to `alex_child/tailwind.css` targeting `[data-mobile-nav-toggle]`
+and `[data-mobile-nav-panel]` to force `display: none` at ≥768px.
+The template's existing `md:hidden` Tailwind class wasn't being
+generated in the compiled CSS for reasons not fully diagnosed
+(likely a Tailwind scan-path issue); explicit CSS bypasses that.
+
+**Startseite hero band enhancements (item 12 — Alex-requested):**
+
+- Hero band height increased so the consultation image displays in
+  full (taller band via larger `py-*` values, edited by Henry directly)
+- Parallax effect added via `background-attachment: fixed` on the
+  hero background div, with `scroll` fallback for mobile (≤768px) and
+  for `prefers-reduced-motion: reduce`
+- Opacity fade added (`opacity: 0.6`) on top of the existing
+  `filter: grayscale(100%) brightness(0.55)` so the image is softer
+  and text contrast improves
+
+**ACF field-type / location-rule fixes for Alex's pages:**
+
+- Created Alex-specific duplicates of the parent's Über mich and
+  Kontakt field groups in `alex_child/acf-json/` with Page (not Page
+  ID) location rules pointing at Alex's specific pages. Parent's
+  originals used Birgit's page IDs and didn't match Alex's
+- Parent's Leistung field group CTA Link sub-field converted from
+  URL → Text via the wp-admin Save → JSON write-back path. ACF
+  initially wrote the modified file into `alex_child/acf-json/`
+  rather than overwriting the parent's; resolved by `cp`'ing the
+  child's copy back to the parent's path and removing the child's
+  duplicate
+- Footer Repeater URL sub-fields (Schnelllinks, Leistungen)
+  converted URL → Text
+- Various ACF Repeater Adresse field had its New Lines setting
+  changed to `Automatically add <br>` so the multi-line address
+  renders with visible line breaks
+
+**WP_Post fatal-error fix:** the Startseite Leistungen Grid had a PHP
+fatal when the link sub-field returned a WP_Post object that
+`front-page.php` tried to cast to string. Fixed by changing the link
+sub-field's ACF Return Format from "Post Object" to "Post ID" — no
+template change needed.
+
+**Verified at session end:**
+
+- All 9 pages on Alex's site render with real content
+- Front-page bands all populated and visually correct
+- Contact form functional (sends test mail to Alex's address on submit)
+- Logo and favicon visible
+- Hamburger hidden on desktop, visible on mobile
+- Parallax hero with opacity fade and full-image height
+
+**Deferred from this session (intentional, low priority for demo):**
+
+- Sample Page and Privacy Policy drafts still in Alex's wp-admin
+  (cleanup before launch)
+- Footer Socials URL sub-field left as URL type (no social channels
+  needed)
+- The desktop `md:hidden` hamburger fix was applied via explicit CSS
+  rather than diagnosing why Tailwind isn't generating the class. The
+  root cause should be investigated before launch (likely a config
+  scan-path issue)
+- Real Impressum and Datenschutz pages (Alex says his existing old-site
+  versions are usable, minus the Google Maps embed paragraph)
+
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## 5. Key Decisions Made
 
 ### Architecture
@@ -582,6 +783,8 @@ footer.
   Canadian Rocky Mountains vacation photos (delivered before her end-of-May
   vacation)
 
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## 6. Credentials & Access Details
@@ -636,40 +839,48 @@ footer.
 - Critically: Alex's Kassenpraxis correspondence uses KV-SafeNet — must NOT be
   touched
 
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## 7. Project Rules (CLAUDE.md)
 
 The project has strict working rules in `CLAUDE.md`. Key points:
 
-- **`resources/birgit-kretzschmar.de/` is OFF-LIMITS** — original old-site
-  files. Do not read, modify, or copy from this folder without explicit
-  permission.
-- **Always show plan before doing anything; await approval.**
-- **Always specify which files/folders will be touched.**
-- **Always provide rollback plan.**
-- **Henry runs ALL Git/GitHub operations.** Claude (or any AI assistant) should
-  never run `git` commands.
-- **Although Claude (and other AI assistants) do not issue/run `git` commands
-  they should prompt when to run `git` making a suitable commit statement
-  suggestion.**
-- **Never guess.** If uncertain, say so.
-- Be evidence-driven, not speculative.
+- Do nothing with the code in the
+'/Users/henrymacartney/Dropbox/03_Uni_MI/900
+-Harvard_University_Courses_in_Computer_Science/Udemy-Courses/wordpress
+/praxis_kretzschmar/resources/' folder and its subfolders
+without my express permisssion  
+- Always show me your thoughts / plan about what you would like to do for my
+approval  
+- Always tell me in which folders / files you will work in and where exactly
+the work you propose to do will be done  
+- Always prepare a roll-back for cases in which I do not like what you have
+done. After roll-back prompt me to do a Git backup.  
+- Henry runs ALL Git/GitHub operations. Claude (or any AI assistant) should 
+  never
+run git commands.
+- Never guess at answers - if you do not know something say so - in the past
+you have guessed and that infuriates me!! Be evidence-driven, not speculative.
+- Claude should not deliberate much when considering various solutions to
+problems. This has been problematic in the past and results in endless repeated
+rounds of suggestion!
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
-## 8. Current State (As of 8 May 2026, end of Alex scaffolding)
+## 8. Current State (As of 12 May 2026, end of Alex content-population)
 
 ### What's working
 
-**Birgit's site** (unchanged from 7 May, plus parent-theme header fix
-that doesn't visibly change anything on her site):
+**Birgit's site** (unchanged from 7 May):
 
 - All seven of Birgit's pages render with real (placeholder) content
 - Plus Leistungen overview, Impressum, Datenschutzerklärung
 - Homepage three-image gallery
-- Branded header with logo and wordmark (now reads from Settings →
-  General rather than hard-coded literals)
+- Branded header with logo and wordmark (reads from Settings → General)
 - Sticky navigation with subtle cream contrast against page sections
 - Desktop and mobile navigation (hamburger + dropdown)
 - Hover dropdown for Leistungen with four therapy items
@@ -677,56 +888,67 @@ that doesn't visibly change anything on her site):
 - Contact Form 7 on Kontakt page with German labels and DSGVO consent
 - All "Kontakt aufnehmen" CTAs pointing to /kontakt/
 
-**Alex's site** (new, scaffolded 8 May):
+**Alex's site** (content-populated end-to-end on 12 May, demo-ready
+for Alex's review):
 
 - Local site running at `http://alexkretzschmar.local/`
 - Child theme `alex_child` activated, inheriting from `praxis_base`
-- Homepage loads styled (cream + navy + warm-red logo accent)
-- Header shows correct wordmark "DR. ALEXANDER KRETZSCHMAR · PRAXIS
-  FÜR PSYCHOTHERAPIE"
-- Four-column footer with italic placeholders for unpopulated ACF
-  fields and warm-red accent underlines
+- ACF Pro and Contact Form 7 plugins installed and active
+- All nine pages exist, all populated with real German content
+- Static front page assigned to Startseite (Settings → Reading)
+- Header with Custom Logo (transparent-background PNG) to the left of
+  the wordmark "DR. ALEXANDER KRETZSCHMAR · PRAXIS FÜR PSYCHOTHERAPIE"
+- Favicon (same logo) in browser tab
+- Hamburger menu hidden on desktop (≥768px), visible on mobile
+- **Startseite** — five-band landing page:
+  - Hero band with full-bleed `consultation_bw_web.jpg` background,
+    parallax (`background-attachment: fixed`), opacity fade
+    (`opacity: 0.6`), grayscale + brightness 0.55 filter, taller band
+    so the image displays in full, two CTAs over a navy gradient veil
+  - Leistungen Grid with intro paragraph and six cards (icon, title,
+    summary, link), each linking to its sub-page
+  - Über mich Band with portrait + lead + body + CTA, with
+    decorative red+navy corner brackets on the portrait
+  - Kontakt CTA Band (warm-red full-width) with heading, sub, two CTAs
+- **Über mich** — tagline, portrait, bio (3 paragraphs), six
+  Qualifikationen (Promotion, Approbation, Tiefenpsychologie,
+  Gestalttherapie FPI, Hypnotherapie MEG, Psychoonkologie/DKG),
+  Werdegang (2 paragraphs)
+- **Six Leistung sub-pages** (Tiefenpsychologie, Gestalttherapie,
+  Psychoonkologie, Hypnotherapie, Coaching, Praxis) — each with
+  tagline, intro, three Repeater sections (heading + body), CTA back
+  to Kontakt
+- **Kontakt** — tagline, intro, formatted Adresse block (address,
+  phone, email, Sprechzeiten, Anfahrt with line breaks), working
+  Contact Form 7 form ("Kontakt Standardformular") with Name, E-Mail,
+  Betreff, Nachricht, DSGVO consent checkbox, German labels and
+  button text
+- Four-column footer fully populated via Options Page (Über uns,
+  Schnelllinks, Unsere Leistungen, Kontaktinfo)
 - Footer copyright reads "© 2026 Dr. Alexander Kretzschmar"
-- Five-band landing-page template `front-page.php` ready but empty
-  (every band guards on ACF field presence, renders nothing until
-  populated)
 
 ### What's NOT working / NOT yet done
 
 - **Self-hosting Google Fonts** — currently loaded from Google CDN (DSGVO
   problem, must fix before launch)
-- **Image optimization** — none applied yet (the 12 MB Birgit portrait original
-  is in the media library)
+- **Image optimization** — partial (Alex's portrait re-encoded 416→80 KB,
+  hero processed at 2400×1600); Birgit's 12 MB portrait still untouched
 - **Caching plugin** — none installed on either site
 - **Security plugin** — none installed on either site
-- **Real Impressum and Datenschutz** — Birgit's current placeholders are demo
-  only; require lawyer review before launch. Alex's not yet created.
+- **Real Impressum and Datenschutz on Alex's site** — pages exist via
+  footer links but 404 (not yet created); Alex has confirmed his
+  old-site versions can be reused (minus Google Maps embed paragraph)
+- **Real Impressum and Datenschutz on Birgit's site** — current placeholders
+  are demo only; require lawyer review before launch
 - **SEO redirect map** — not yet created (old `?page_id=X` URLs need to redirect
   to new clean URLs) for either site
 - **Praxis page on Birgit's site** — exists as draft, not in menu, should be
   deleted
-
-### What's NOT YET STARTED on Alex's site
-
-- **ACF Pro** plugin install
-- **Contact Form 7** plugin install
-- **Page hierarchy** — none of the nine pages exist yet (Startseite,
-  Über mich, Tiefenpsychologie, Gestalttherapie, Psychoonkologie,
-  Hypnotherapie, Coaching, Praxis, Kontakt)
-- **Static front page assignment** — WP currently shows latest posts (an
-  empty list), not the front-page.php template
-- **The five ACF field groups** documented in
-  `alex_child/acf-json/README.md` — to be created in wp-admin
-- **ACF Options Page** for the footer fields — needs
-  `acf_add_options_page()` registration in `alex_child/functions.php`
-- **Hero background image** — the faded B/W "anonymous therapist +
-  patient" image is referenced in the field group but no image is
-  uploaded yet
-- **Six per-service SVG icons** — only `_example.svg` exists as
-  contract demonstrator
-- **Content** — text inventory in
-  `docs/content-inventory/alex_text_content.md` not yet read or
-  imported
+- **Sample Page and Privacy Policy drafts** — auto-generated drafts in
+  Alex's wp-admin, need cleanup
+- **Desktop `md:hidden` Tailwind generation** — explicit CSS used to
+  hide hamburger on desktop; root cause (Tailwind scan-path config)
+  not investigated. Pre-launch task.
 
 ### What's NOT YET STARTED in general
 
@@ -745,21 +967,26 @@ that doesn't visibly change anything on her site):
 
 ### Uncommitted local changes
 
-- **Repo at start of 8 May session:** clean as of last push
-  (commit `addc5a7`)
-- **Repo at end of 8 May session:** the parent-theme `site-header.php`
-  fix and the new `alex_child/` directory are pending commit. Two
-  separate commits recommended; suggested messages in Section 10.
-- **`.gitignore`:** needs updating — current literal
-  `shared/themes/praxis_base/build/` should become the wildcard
-  `shared/themes/*/build/` to also catch the child theme. Also worth
-  adding `~$*` for MS Word lock files.
-- **Database (Birgit):** all populated content (homepage, Über mich, four therapy pages,
-  Termine, Kontakt, Impressum, Datenschutz) lives in `wp_postmeta`. NOT in git.
-  Travels to production via All-in-One WP Migration plugin at deploy time.
-- **Database (Alex):** essentially empty (one auto-generated "Hello World"
-  post; no pages, no ACF fields, no media beyond what comes with a
-  fresh WP install).
+- **Repo at start of 12 May session:** clean as of last push
+  (commit `5fb357a`)
+- **Repo at end of 12 May session:** clean as of last push
+  (commit `d67ffbe`); 10 new commits added during the session
+- **Database (Birgit):** unchanged from 8 May; all populated content
+  (homepage, Über mich, four therapy pages, Termine, Kontakt,
+  Impressum, Datenschutz) lives in `wp_postmeta`. Travels to
+  production via All-in-One WP Migration plugin at deploy time.
+- **Database (Alex):** now fully populated:
+  - All 9 pages with real ACF field values in `wp_postmeta`
+  - Footer Options data in `wp_options`
+  - Contact Form 7 form "Kontakt Standardformular" definition
+  - Custom Logo and Site Icon attachments in the media library
+  - Media library entries for `consultation_bw_web.jpg`,
+    `alex_kretzschmar_portrait.jpg`, `logo_alex.png`, and Alex
+    portrait size variants
+  - Will travel to production via All-in-One WP Migration plugin
+    at deploy time
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -769,12 +996,20 @@ Birgit's site is demo-complete, reviewed by the Kretzschmars on 6 May 2026, and
 approved with two specific changes (sticky nav, darker header — both completed
 and approved by Birgit).
 
-Alex's site is **scaffolded** as of end of 8 May 2026: Local site
-provisioned, child theme created and active, custom front-page
-template ready, four-column footer override in place, both sites
-verified to work independently with their own wordmarks. No content,
-no plugins, no ACF field groups yet. Pause point is just before the
-plugin install + ACF field group construction phase.
+Alex's site is **content-complete and demo-ready** as of end of 12 May
+2026: all nine pages populated end-to-end with real German content;
+ACF Pro and Contact Form 7 installed and configured; Custom Logo and
+Favicon in place; hero band with parallax, opacity fade, and full
+image height; working contact form. Birgit's site untouched except
+where shared parent-theme changes incidentally apply (Leistung CTA
+field type, Gutenberg-disable filter extension — both benign for
+her).
+
+Pause point is **before Alex's review and feedback**. Alex has not yet
+seen this build; he is expected to walk through it and provide
+feedback. Any changes from his review will be applied next, then we
+move into pre-launch tasks (Impressum/Datenschutz, font self-hosting,
+image optimisation, redirect map, SDLC docs, deployment).
 
 The Beriott engagement could expand to full IT support (proposal
 coming next week?; separate from this project).
@@ -784,105 +1019,93 @@ Active waiting on Birgit:
 - Reworked text for all pages (delivery: before end-of-May vacation)
 - Photos from Canadian Rockies vacation for therapy pages (delivery: same)
 
+Active waiting on Alex:
+
+- Review feedback on the demo build
+- His existing Impressum and Datenschutzerklärung text (from the old
+  site, minus the Google Maps embed paragraph)
+
 Henry's next focus:
 
-- Two git commits for the 8 May session (parent header fix + Alex
-  child-theme scaffold)
-- `.gitignore` housekeeping (wildcard for `build/`, plus `~$*`)
-- Plugin install on Alex's site, then content/ACF work
+- Send Alex the demo URL / screenshots and gather his feedback
+- Investigate the Tailwind `md:hidden` scan-path issue (current
+  workaround is explicit CSS, but worth fixing properly before launch)
+- Cleanup of Alex's Sample Page and Privacy Policy drafts
+- Begin pre-launch hardening tasks once Alex's feedback is applied
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
 ## 10. What's Next (Priority Order)
 
-### Immediate (post-8-May session, in order)
+### Immediate (post-12-May session, in order)
 
-1. **Two git commits for the 8 May session** — recommended split:
-  - **Commit 1** (parent-theme fix):
-    `git add shared/themes/praxis_base/template-parts/site-header.php`
-    Message: `praxis_base header: read Site Title and Tagline from bloginfo`
-  - **Commit 2** (Alex's child theme):
-    `git add shared/themes/alex_child/`
-    Message: `Scaffold alex_child child theme with bespoke front-page and four-column footer`
-2. **`.gitignore` housekeeping** — change literal
-   `shared/themes/praxis_base/build/` to wildcard
-   `shared/themes/*/build/`; add `~$*` for MS Word lock files; commit
-   separately
-3. **Install ACF Pro** on Alex's site (same Freelancer licence as
-   Birgit's)
-4. **Install Contact Form 7** on Alex's site
-5. **Create Alex's nine pages** in wp-admin with German slugs:
-   Startseite, Über mich, Tiefenpsychologie, Gestalttherapie,
-   Psychoonkologie, Hypnotherapie, Coaching, Praxis, Kontakt. Set
-   Startseite as the static front page (Settings → Reading)
-6. **Build the five ACF field groups** per the contract in
-   `alex_child/acf-json/README.md` — field names must match the
-   `get_field()` calls in `front-page.php` and
-   `template-parts/site-footer.php`
-7. **Register the ACF Options Page** for the footer fields by adding
-   `acf_add_options_page()` to `alex_child/functions.php` (small
-   addition; required for the footer field group to have a save
-   target)
-8. **Hero background image** — extract from `version_00_alex.zip` or
-   source new; upload to Alex's media library; assign to
-   `hero_background_image` ACF field
-9. **Six per-service SVG icons** in `alex_child/assets/icons/` —
-   Heroicons or Lucide; filenames must match the `acf-json/README.md`
-   contract (kebab-case: `tiefenpsychologie.svg` etc.)
-10. **Populate ACF fields with content** from
-    `docs/content-inventory/alex_text_content.md`
+1. **Send Alex the demo** for his review — URL on Local won't reach
+   him, so either: (a) screenshot the live front-end pages and email,
+   (b) record a short Loom walkthrough, or (c) deploy a staging
+   build (e.g. on Hostinger early) so he can click through it
+2. **Apply Alex's feedback** when it arrives — copy edits, visual
+   tweaks, anything he flags
+3. **Investigate Tailwind `md:hidden` scan-path issue** — the parent
+   template uses `md:hidden` on the hamburger button, but the
+   compiled Tailwind CSS doesn't contain that utility (workaround:
+   explicit CSS rule in `alex_child/tailwind.css`). The root cause is
+   likely a missing `@source` directive or a Tailwind config
+   scan-path issue. Fix properly so future `md:*` utilities work
+   without explicit-CSS workarounds
+4. **Cleanup Sample Page and Privacy Policy drafts** in Alex's
+   wp-admin (auto-generated; not needed)
+5. **Real Impressum and Datenschutz on Alex's site** — Alex confirmed
+   his old-site versions can be reused minus the Google Maps embed
+   paragraph; create the pages, paste content, link from footer
 
 ### Short-term (before Birgit's vacation, end May 2026)
 
-11. **Build Alex's interior pages** — Über mich, six therapy pages,
-    Praxis, Kontakt. These should reuse the parent's existing
-    templates (`page-ueber-mich.php`, `template-leistung.php`,
-    `template-leistungen-overview.php`, `template-kontakt.php`)
-    without bespoke work unless Alex's content demands it
-12. **Delete Birgit's draft "Praxis" page** to clean up wp-admin
-13. **Self-host Google Fonts** (DSGVO compliance) — applies to both
-    sites
-14. **Receive Birgit's reworked content + Canadian Rockies photos** —
-    schedule a session to apply them
-15. **Custom front-end editing tool design** — at minimum, a
-    wireframe/specification for what Birgit wants to be able to edit
-    without wp-admin (this came up unexpectedly in the meeting; see
-    Section 12)
-16. **Image optimization** — compress portraits and large images
-17. **Birgit's child theme** — scaffold `shared/themes/birgit_child/`
+6. **Delete Birgit's draft "Praxis" page** to clean up wp-admin
+7. **Self-host Google Fonts** (DSGVO compliance) — applies to both
+   sites
+8. **Receive Birgit's reworked content + Canadian Rockies photos** —
+   schedule a session to apply them
+9. **Custom front-end editing tool design** — at minimum, a
+   wireframe/specification for what Birgit wants to be able to edit
+   without wp-admin (this came up unexpectedly in the meeting; see
+   Section 12)
+10. **Image optimization** — compress portraits and large images
+11. **Birgit's child theme** — scaffold `shared/themes/birgit_child/`
     if there are practice-specific overrides (low priority unless
     actually needed)
 
 ### Medium-term (during Kretzschmars' 4-week vacation, June 2026)
 
-18. **Real Impressum and Datenschutz** for both sites — lawyer review;
-    according to Alex review is not necessary - this has already been done
-    and we can use Impressum and Datenschutzerklärung from old site (his
-    responsibility not Beriott's)
-19. **Pre-launch hardening:**
+12. **Real Impressum and Datenschutz for Birgit's site** — lawyer
+    review (Birgit's responsibility, not Beriott's)
+13. **Pre-launch hardening:**
 
 - Caching plugin (e.g. WP Super Cache or W3 Total Cache)
 - Security plugin (e.g. Wordfence)
 - SEO redirect map: old `?page_id=X` → new clean URLs
 
-20. **Cross-browser / mobile QA**
-21. **Performance + accessibility audit** — Lighthouse, alt text review,
+14. **Cross-browser / mobile QA**
+15. **Performance + accessibility audit** — Lighthouse, alt text review,
     headings hierarchy
-22. **SDLC documentation** (URS, RA, FRS, Test Plan, RTM) — derived from the URS
+16. **SDLC documentation** (URS, RA, FRS, Test Plan, RTM) — derived from the URS
     interviews already conducted
 
 ### Production (target: before Kretzschmars return from vacation)
 
-23. **Hostinger account provisioning** (Premium plan x2 — domains
+17. **Hostinger account provisioning** (Premium plan x2 — domains
     transferred to Hostinger; hosting plans for the new builds need
     provisioning)
-24. **Migration via All-in-One WP Migration plugin** for each site
-25. **DNS cutover** so the domains serve the new sites instead of the
+18. **Migration via All-in-One WP Migration plugin** for each site
+19. **DNS cutover** so the domains serve the new sites instead of the
     old ones currently at those URLs
-26. **Pre-launch testing** (Test Plan execution from Work Package 6)
-27. **Hand-off PDF guide** for Birgit/Alex on how to edit content via wp-admin
+20. **Pre-launch testing** (Test Plan execution from Work Package 6)
+21. **Hand-off PDF guide** for Birgit/Alex on how to edit content via wp-admin
     AND via the new front-end editor
-28. **Custom front-end editor — final implementation**
+22. **Custom front-end editor — final implementation**
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -911,6 +1134,8 @@ Henry's next focus:
    confirmed.* Alex's site mirrors Birgit's praxis_base architecture with
    nine separate pages. The 2024 one-pager is a visual reference for
    the hero motif only.
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -949,12 +1174,12 @@ what was actually agreed and discussed.
 
 ### Alex's input
 
-- Alex reported on work done by an IT person on one of his Email systems. 
-  The practice has two systems an Outlook sysmtem (approx. 8 years old) and 
-  a Kassenärztliches System. Neither of these email systems are associated 
-  with the old websites and should remain independent from the new sites. 
-  The maintenance work done on the Outlook system was to allow Alex access 
-  to the system again - he had been locked out. The maintenance was 
+- Alex reported on work done by an IT person on one of his Email systems.
+  The practice has two systems an Outlook sysmtem (approx. 8 years old) and
+  a Kassenärztliches System. Neither of these email systems are associated
+  with the old websites and should remain independent from the new sites.
+  The maintenance work done on the Outlook system was to allow Alex access
+  to the system again - he had been locked out. The maintenance was
   successfully concluded.
 - Initially said he didn't want any changes to his site
 - Reversed during the evening; volunteered that he had once tried to change
@@ -985,7 +1210,7 @@ what was actually agreed and discussed.
 ### Commercial outcomes
 
 - €1.500 fixed-price quote accepted; described as "very generous"
-- Henry explained the rate structure: post-URS changes at normal 
+- Henry explained the rate structure: post-URS changes at normal
   Beriott rate (€105/hour).
 - **Beriott GmbH asked to take over the Kretzschmars' entire IT support.**
   Separate engagement from this website project; will be handled by another
@@ -998,6 +1223,8 @@ what was actually agreed and discussed.
 - Kretzschmars away for 4 weeks during their vacation
 - **Beriott has committed to delivering both sites by their return**
 
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## 13. How to Resume Work
@@ -1006,12 +1233,12 @@ To continue this project after a break:
 
 1. **Pull latest from GitHub:** `git pull origin main`
 2. **Start Local by Flywheel** and confirm both sites are running:
-  - Birgit at `http://birgitkretzschmar.local/`
-  - Alex at `http://alexkretzschmar.local/`
+- Birgit at `http://birgitkretzschmar.local/`
+- Alex at `http://alexkretzschmar.local/`
 3. **Open the project in PHPStorm**
 4. **Start both Tailwind watchers** (each in its own terminal tab):
-  - `cd shared/themes/praxis_base && npm run dev`
-  - `cd shared/themes/alex_child && npm run tw:watch`
+- `cd shared/themes/praxis_base && npm run dev`
+- `cd shared/themes/alex_child && npm run tw:watch`
 5. **Verify both sites load** in the browser
 6. **Review this handoff doc** to remember where we paused — Section 8
    for current state, Section 10 for what's next
@@ -1059,6 +1286,8 @@ produce no visual effect, restart the watcher (`Ctrl+C` then `npm run dev`)
 before debugging anything else. Tailwind 4's class scanner can silently miss new
 utilities introduced in PHP files.
 
+[↑ Back to top](#table-of-contents)
+
 ---
 
 ## 14. Contact
@@ -1068,3 +1297,5 @@ utilities introduced in PHP files.
 - **Clients:** Frau Birgit Kretzschmar, Herr Dr. Alexander Kretzschmar (
   Wiesbaden)
 - **Repository:** github.com/henrymacartney/praxis_kretzschmar
+
+[↑ Back to top](#table-of-contents)
