@@ -71,6 +71,48 @@
             "new_lines": ""
         },
         {
+            "key": "field_69fea86fa1c20",
+            "label": "Hero Line 3",
+            "name": "hero_line3",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_69fea86fa1c21",
+            "label": "Hero Line 4",
+            "name": "hero_line4",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_69fea8f9a1b20",
             "label": "Hero CTA Primary Label",
             "name": "hero_cta_primary_label",
@@ -176,5 +218,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1778560469
+    "modified": 1778926848
 }

@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Child theme for Herr Dr. Alexander Kretzschmar — overrides praxis_base parent with logo-derived warm-red accent and bespoke landing-page layout.",
   "scripts": {
-    "tw:build": "tailwindcss -i tailwind_old.css -o ./build/theme.css --minify",
-    "tw:watch": "tailwindcss -i tailwind_old.css -o ./build/theme.css --watch"
+    "tw:build": "tailwindcss -i tailwind.css -o ./build/theme.css --minify",
+    "tw:watch": "tailwindcss -i tailwind.css -o ./build/theme.css --watch"
   },
   "author": "",
   "license": "ISC",

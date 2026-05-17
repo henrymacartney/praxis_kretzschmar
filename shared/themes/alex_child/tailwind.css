@@ -39,7 +39,7 @@
 /* ─── Item 12: Hero parallax + extra fade ──────────────────────── */
 .hero .absolute.bg-cover {
     background-attachment: fixed;
-    opacity: 0.2;
+    opacity: 0.5;
 }
 
 @media (max-width: 768px) {
@@ -57,14 +57,14 @@
 /* ─── Mobile hero background — portrait variant ───────────────── */
 @media (max-width: 768px) {
     .hero .absolute.bg-cover {
-        background-image: url('../assets/images/consultation_mobile_bw_web.jpg') !important;
+        background-image: url('../assets/images/kretzschmar-1-scaled_bw.jpg') !important;
     }
 }
 
 /* ─── Tablet hero background — portrait variant ───────────────── */
 @media (min-width: 769px) and (max-width: 1024px) {
     .hero .absolute.bg-cover {
-        background-image: url('../assets/images/consultation_tablet_bw_web.jpg') !important;
+        background-image: url('../assets/images/kretzschmar-1-scaled_bw.jpg') !important;
     }
 }
 
